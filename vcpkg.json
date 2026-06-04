@@ -1,0 +1,11 @@
+{
+  "name": "openshape",
+  "version": "0.1.0",
+  "description": "OpenShape 3D CAD modeler — OCCT and other C++ dependencies",
+  "dependencies": [
+    {
+      "name": "opencascade",
+      "default-features": true
+    }
+  ]
+}

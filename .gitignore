@@ -36,8 +36,9 @@ install/
 *.gch
 *.pch
 
-# ---- Dependencies (referenced, NOT stored in the repo) ----
-# Qt and OCCT are installed via vcpkg/Conan or system packages — see CLAUDE.md.
+# ---- Dependencies (fetched by setup scripts — never stored here) ----
+# Qt is installed via aqtinstall; OCCT via vcpkg — see scripts/setup-deps.*
+deps/
 vcpkg_installed/
 .conan/
 conan.lock
@@ -46,7 +47,7 @@ conaninfo.txt
 graph_info.json
 third_party/**/build/
 
-# ---- Release binaries (use GitHub Releases, not the repo) ----
+# ---- Release binaries (use GitHub Releases, not the repo tree) ----
 release/
 dist/
 packages/
@@ -64,9 +65,9 @@ tests/fixtures/large/
 *.stp.large
 
 # ---- IDE / editor ----
-.vscode/            # keep this ignored unless you intentionally share settings
+.vscode/            # keep ignored unless you intentionally share settings
 .idea/
-*.user            # Qt Creator per-user project settings (*.pro.user etc.)
+*.user              # Qt Creator per-user project settings
 *.creator.user*
 *.autosave
 .qtc_clangd/
@@ -92,10 +93,9 @@ desktop.ini
 
 # ──────────────────────────────────────────────
 # NOTE: A companion .gitattributes should declare Git LFS tracking
-# for large binary test models, e.g.:
+# for large binary test models once actually needed, e.g.:
 #   *.step  filter=lfs diff=lfs merge=lfs -text
 #   *.stp   filter=lfs diff=lfs merge=lfs -text
 #   *.iges  filter=lfs diff=lfs merge=lfs -text
 #   *.stl   filter=lfs diff=lfs merge=lfs -text
-# Only enable these once you actually need LFS — small fixtures can stay normal.
 # ──────────────────────────────────────────────

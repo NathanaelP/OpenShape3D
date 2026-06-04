@@ -100,7 +100,7 @@ Do not jump ahead. If a task seems to require a later milestone's subsystem, say
 - **Constraint solver (affects M2):** adopt an existing open-source solver vs. build. Strong lean toward adopting (e.g. an established 2D geometric constraint solver) rather than writing from scratch. Confirm with me before committing.
 - **Rendering path:** OCCT's own visualization layer vs. a custom renderer over the tessellated B-rep.
 - **DWG support:** requires a paid third-party library (e.g. ODA). DXF (open) ships first; DWG is optional. Don't add a paid dependency without asking.
-- **Dependency management (affects M1):** strong lean toward a package manager — **vcpkg** or **Conan** — to fetch pinned Qt and OCCT versions so the build is reproducible across all three OSes. The alternative is documenting versions and letting contributors install manually. Confirm which before we wire up CMake. Either way, **dependencies are never committed to the repo** (see Repository below).
+- **Dependency management (M1 — DECIDED):** **aqtinstall for Qt 6 + vcpkg (manifest mode) for OCCT and other C++ deps.** Qt is downloaded as official prebuilt binaries via `aqtinstall` to `deps/Qt/` (gitignored). OCCT and future C++ libs come via `vcpkg.json` at the repo root; vcpkg is pointed to via `VCPKG_ROOT` env var (not committed). `CMakePresets.json` reads `$env{VCPKG_ROOT}` (toolchain) and `$env{QT_DIR}` (prefix path). See `scripts/setup-deps.sh` / `scripts/setup-deps.ps1`. Qt version: **6.7.3**. After vcpkg is installed, run `vcpkg x-update-baseline --add-initial-baseline` and commit the result to lock the registry baseline.
 
 ---
 
